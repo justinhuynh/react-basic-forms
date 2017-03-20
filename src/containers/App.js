@@ -1,28 +1,36 @@
 import React, { Component } from 'react';
-import FormContainer from './FormContainer';
-import ItemsList from '../components/ItemsList';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      itemFieldTerm: ''
     }
-    this.addItem = this.addItem.bind(this);
+
+    // need to bind to `this` particular instance
+    this.handleFieldChange = this.handleFieldChange.bind(this)
   }
 
-  addItem(itemPayload) {
-    // we are adding the `itemPayload` to the `items` array in state
-    this.setState({ items: this.state.items.concat(itemPayload) })
+  // function that is just an event handler
+  handleFieldChange(event) {
+    // console.log(event.target.value)
+
+    this.setState({ itemFieldTerm: event.target.value })
   }
 
   render() {
     return (
       <div className="row">
         <div className="small-9 small-centered columns">
-          <h1 className="text-center">List of Items</h1>
-          <FormContainer addItem={this.addItem} />
-          <ItemsList items={this.state.items} />
+          <input
+            name='itemField'
+            type='text'
+            value={this.state.itemFieldTerm}
+
+            // we get the `onChange` property from React
+            // shortcut for an event listener that detects changes
+            onChange={this.handleFieldChange}
+          />
         </div>
       </div>
     );
