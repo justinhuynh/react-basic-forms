@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './containers/App';
+import FormContainer from './containers/FormContainer';
 
 ReactDOM.render(
-  <App />,
+  <FormContainer />,
   document.getElementById('root')
 );

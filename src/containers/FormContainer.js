@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import TextField from '../components/TextField'
 
-class App extends Component {
+class FormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,8 +14,6 @@ class App extends Component {
 
   // function that is just an event handler
   handleFieldChange(event) {
-    // console.log(event.target.value)
-
     this.setState({ itemFieldTerm: event.target.value })
   }
 
@@ -22,14 +21,10 @@ class App extends Component {
     return (
       <div className="row">
         <div className="small-9 small-centered columns">
-          <input
-            name='itemField'
-            type='text'
-            value={this.state.itemFieldTerm}
-
-            // we get the `onChange` property from React
-            // shortcut for an event listener that detects changes
-            onChange={this.handleFieldChange}
+          <TextField
+            // we need to pass the handler AND value down to the component
+            handlerFunction={this.handleFieldChange}
+            content={this.state.itemFieldTerm}
           />
         </div>
       </div>
@@ -37,4 +32,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default FormContainer;
